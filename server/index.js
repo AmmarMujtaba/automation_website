@@ -11,13 +11,15 @@ app.use(cors({
 
 app.get('/on',(req,res) => {
     let response
-    fetch('http://39.42.240.101/on')
-    .then((res) => {
-        return res.text
-    })
-    .then((text) => {
-        res.send(text)
-    })
+    // fetch('http://39.42.240.101/on')
+    // .then((res) => {
+    //     return res.text
+    // })
+    // .then((text) => {
+    //     res.send(text)
+    // })
+
+    res.send('Server running AlhamdulILLAH')
 })
 
 app.listen(5555,() => {
