@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import {fanBtnClicked} from './server.js'
 
 function App() {
   return (
     <>
-      <h1>BismILLAH</h1>
+      <button id='fanBtn' onClick={fanBtnClicked}>Change</button>
     </>
   );
 }
