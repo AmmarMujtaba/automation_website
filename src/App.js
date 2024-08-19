@@ -1,5 +1,5 @@
 import './App.css';
-import {fanBtnClicked} from './server.js'
+import fanBtnClicked from './server.js'
 
 function App() {
   return (
