@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const fetch = require('node-fetch')
 
 app.use(cors({
     origin:'*',
@@ -9,7 +10,14 @@ app.use(cors({
 }))
 
 app.get('/on',(req,res) => {
-    res.send('Server running AlhamdulILLAH')
+    let response
+    fetch('http://39.42.240.101/on')
+    .then((res) => {
+        return res.text
+    })
+    .then((text) => {
+        res.send(text)
+    })
 })
 
 app.listen(5555,() => {
