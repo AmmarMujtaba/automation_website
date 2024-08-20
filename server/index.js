@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-// const fetch = require('node-fetch')
+import fetch from 'node-fetch'
 
 app.use(cors({
     origin:'*'
