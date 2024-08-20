@@ -1,11 +1,12 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const fetch = require('node-fetch')
+// const fetch = require('node-fetch')
 
 app.use(cors({
     origin:'*',
     methods:['GET','POST'],
+    credentials: true,
     allowedHeaders: ['Content-Type','Authorization']
 }))
 
