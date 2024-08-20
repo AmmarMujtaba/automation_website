@@ -9,7 +9,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type','Authorization']
 }))
 
-app.get('/on',(req,res) => {
+app.get('/',(req,res) => {
     let response
     // fetch('http://39.42.240.101/on')
     // .then((res) => {
