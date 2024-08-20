@@ -4,13 +4,10 @@ const cors = require('cors')
 // const fetch = require('node-fetch')
 
 app.use(cors({
-    origin:'*',
-    methods:['GET','POST'],
-    credentials: true,
-    allowedHeaders: ['Content-Type','Authorization']
+    origin:'*'
 }))
 
-app.get('/',(req,res) => {
+app.get('/on',(req,res) => {
     let response
     // fetch('http://39.42.240.101/on')
     // .then((res) => {
