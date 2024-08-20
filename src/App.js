@@ -1,6 +1,6 @@
 import './App.css';
-import OnBtnClicked from './client.js'
-import OffBtnClicked from './client.js'
+import {OnBtnClicked} from './client.js'
+import {OffBtnClicked} from './client.js'
 
 function App() {
   return (
