@@ -17,7 +17,7 @@ app.get('/on',(req,res) => {
         res.send(text)
     })
 
-    res.send('normal response')
+    // res.send('normal response')
     // res.send('Server running AlhamdulILLAH')
 })
 
