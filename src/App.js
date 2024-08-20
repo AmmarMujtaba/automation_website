@@ -4,7 +4,8 @@ import fanBtnClicked from './client.js'
 function App() {
   return (
     <>
-      <button id='fanBtn' onClick={fanBtnClicked}>Change</button>
+      <button id='fanBtn' onClick={OnBtnClicked}>ON</button>
+      <button id='fanBtn' onClick={OffBtnClicked}>OFF</button>
     </>
   );
 }

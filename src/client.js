@@ -1,6 +1,16 @@
-export default function fanBtnClicked(){
-    console.log('inside handler function')
+export function OnBtnOnClicked(){
+    console.log('inside on handler')
     fetch('https://as-server-orpin.vercel.app/on')
+    .then((response) => {
+        return response.text()
+    })
+    .then((text) => {
+        console.log('response: ',text)
+    })
+}
+export function OffBtnOnClicked(){
+    console.log('inside off handler')
+    fetch('https://as-server-orpin.vercel.app/off')
     .then((response) => {
         return response.text()
     })

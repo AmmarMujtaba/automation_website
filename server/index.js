@@ -20,6 +20,16 @@ app.get('/on',(req,res) => {
     // res.send('normal response')
     // res.send('Server running AlhamdulILLAH')
 })
+app.get('/off',(req,res) => {
+    let response
+    fetch('http://182.189.39.142:5555/off')
+    .then((res) => {
+        return res.text()
+    })
+    .then((text) => {
+        res.send(text)
+    })
+})
 
 app.listen(5555,() => {
     console.log('server listening on port 5555')
