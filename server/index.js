@@ -9,15 +9,16 @@ app.use(cors({
 
 app.get('/on',(req,res) => {
     let response
-    fetch('http://182.189.39.142/on')
+    fetch('http://182.189.39.142:55555/on')
     .then((res) => {
-        return res.text
+        return res.text()
     })
     .then((text) => {
         res.send(text)
     })
 
-    res.send('Server running AlhamdulILLAH')
+    res.send('normal response')
+    // res.send('Server running AlhamdulILLAH')
 })
 
 app.listen(5555,() => {
