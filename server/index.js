@@ -9,7 +9,7 @@ app.use(cors({
 
 app.get('/on',(req,res) => {
     let response
-    fetch('http://182.189.39.142:55555/on')
+    fetch('http://182.189.39.142:5555/on')
     .then((res) => {
         return res.text()
     })
