@@ -16,9 +16,6 @@ app.get('/on',(req,res) => {
     .then((text) => {
         res.send(text)
     })
-
-    // res.send('normal response')
-    // res.send('Server running AlhamdulILLAH')
 })
 app.get('/off',(req,res) => {
     let response
