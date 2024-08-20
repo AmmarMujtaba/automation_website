@@ -1,5 +1,6 @@
 import './App.css';
-import fanBtnClicked from './client.js'
+import OnBtnClicked from './client.js'
+import OffBtnClicked from './client.js'
 
 function App() {
   return (
