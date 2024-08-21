@@ -40,7 +40,9 @@ app.get('/changeip',async (req,res) => {
 
     //change ip in the database
     const collection = db('myDB').collection('cardiology')
-    const status = collection.updateOne({},{'ip':newIp})
+    const status = await collection.updateOne({},{'ip':newIp})
+
+    res.send('AlhamdulILLAH! Success!')
 })
 
 app.listen(5555,() => {
