@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
-import {MongoClient, mongoClient} from 'mongodb'
+import {MongoClient} from 'mongodb'
 const app = express()
 
 app.use(cors({
@@ -9,12 +9,15 @@ app.use(cors({
 }))
 
 const dbUri = 'mongodb+srv://ammar:ammar786@atlascluster.8drgp.mongodb.net/'
-
 const client = new MongoClient(dbUri)
+await client.connect()
+const collection = client.db('myDB').collection('cardiology')
 
-app.get('/on',(req,res) => {
-    let response
-    fetch('http://182.189.39.142:5555/on')
+app.get('/on',async (req,res) => {
+    //find ip from database
+    const data = await collection.findOne({"_id":1})
+
+    fetch(`http://${data.ip}:5555/on`)
     .then((res) => {
         return res.text()
     })
@@ -22,9 +25,11 @@ app.get('/on',(req,res) => {
         res.send(text)
     })
 })
-app.get('/off',(req,res) => {
-    let response
-    fetch('http://182.189.39.142:5555/off')
+app.get('/off',async (req,res) => {
+    //find ip from database
+    const data = await collection.findOne({"_id":1})
+
+    fetch(`http://${data.ip}:5555/off`)
     .then((res) => {
         return res.text()
     })
@@ -35,16 +40,12 @@ app.get('/off',(req,res) => {
 app.get('/changeip',async (req,res) => {
     const newIp = req.query.ip
 
-    //connect with database
-    const db = await client.connect()
+    //update the ip in database
+    const status = await collection.updateOne({"_id":1},{$set:{'ip':newIp}})
 
-    //change ip in the database
-    const collection = db('myDB').collection('cardiology')
-    const status = await collection.updateOne({},{'ip':newIp})
-
-    res.send('AlhamdulILLAH! Success!')
+    res.send('AlhamdulILLAH! Changed the ip')
 })
 
 app.listen(5555,() => {
-    console.log('server listening on port 5555')
+    console.log('server listening on port 5556')
 })
