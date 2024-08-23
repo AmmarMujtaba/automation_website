@@ -13,6 +13,9 @@ const client = new MongoClient(dbUri)
 await client.connect()
 const collection = client.db('myDB').collection('cardiology')
 
+app.get('/',async (req,res) => {
+        res.send("Successful response")
+})
 app.get('/on',async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
