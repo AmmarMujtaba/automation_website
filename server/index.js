@@ -48,6 +48,10 @@ app.get('/changeip',cors({origin:'*'}),async (req,res) => {
 
     res.send('AlhamdulILLAH! Changed the ip')
 })
+app.get('/example',async (req,res) => {
+
+    res.send('AlhamdulILLAH! example working')
+})
 
 app.listen(443,() => {
     console.log('server listening on port 443')

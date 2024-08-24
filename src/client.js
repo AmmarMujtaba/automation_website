@@ -18,13 +18,3 @@ export function OffBtnClicked(){
         console.log('response: ',text)
     })
 }
-export function tstCorsBtnClicked(){
-    console.log('inside tst handler')
-    fetch('https://as-server-orpin.vercel.app/changeip')
-    .then((response) => {
-        return response.text()
-    })
-    .then((text) => {
-        console.log('response: ',text)
-    })
-}
