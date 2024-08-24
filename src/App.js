@@ -5,8 +5,9 @@ import {OffBtnClicked} from './client.js'
 function App() {
   return (
     <>
-      <button id='fanBtn' onClick={OnBtnClicked}>ON</button>
-      <button id='fanBtn' onClick={OffBtnClicked}>OFF</button>
+      <button onClick={OnBtnClicked}>ON</button>
+      <button onClick={OffBtnClicked}>OFF</button>
+      <button onClick={tstCorsBtnClicked}>Tet CORS</button>
     </>
   );
 }
