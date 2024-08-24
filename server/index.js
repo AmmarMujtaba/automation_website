@@ -13,14 +13,11 @@ const client = new MongoClient(dbUri)
 await client.connect()
 const collection = client.db('myDB').collection('cardiology')
 
-app.get('/',(req,res) => {
-        res.send("Successful response")
-})
-app.get('/on',async (req,res) => {
+app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
-    fetch(`http://${data.ip}:5555/on`)
+    fetch(`http://${data.ip}/on`)
     .then((res) => {
         return res.text()
     })
@@ -28,11 +25,11 @@ app.get('/on',async (req,res) => {
         res.send(text)
     })
 })
-app.get('/off',async (req,res) => {
+app.get('/off'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
-    fetch(`http://${data.ip}:5555/off`)
+    fetch(`http://${data.ip}/off`)
     .then((res) => {
         return res.text()
     })
@@ -40,13 +37,13 @@ app.get('/off',async (req,res) => {
         res.send(text)
     })
 })
-app.get('/changeip',cors({origin:'*'}),async (req,res) => {
+app.get('/changeip',async (req,res) => {
     const newIp = req.query.ip
 
     //update the ip in database
     const status = await collection.updateOne({"_id":1},{$set:{'ip':newIp}})
 
-    res.send('AlhamdulILLAH! Changed the ip')
+    res.send(`ipChanged:${newIp}`)
 })
 app.get('/example',async (req,res) => {
 
