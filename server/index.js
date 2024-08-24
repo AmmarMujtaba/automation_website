@@ -13,7 +13,7 @@ const client = new MongoClient(dbUri)
 await client.connect()
 const collection = client.db('myDB').collection('cardiology')
 
-app.get('/',async (req,res) => {
+app.get('/',(req,res) => {
         res.send("Successful response")
 })
 app.get('/on',async (req,res) => {
@@ -40,7 +40,7 @@ app.get('/off',async (req,res) => {
         res.send(text)
     })
 })
-app.get('/changeip',async (req,res) => {
+app.get('/changeip',cors({origin:'*'}),async (req,res) => {
     const newIp = req.query.ip
 
     //update the ip in database
