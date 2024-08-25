@@ -4,9 +4,7 @@ import fetch from 'node-fetch'
 import {MongoClient} from 'mongodb'
 const app = express()
 
-app.use(cors({
-    origin: '*'
-}))
+app.use(cors())
 
 const dbUri = 'mongodb+srv://ammar:ammar786@atlascluster.8drgp.mongodb.net/'
 const client = new MongoClient(dbUri)
