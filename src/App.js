@@ -1,7 +1,5 @@
 import './App.css';
-import {OnBtnClicked} from './client.js'
-import {OffBtnClicked} from './client.js'
-import { reqStatBtnClicked } from './client.js';
+import {OnBtnClicked,OffBtnClicked,reqStatBtnClicked,exBtnClicked} from './client.js'
 
 function App() {
   return (
@@ -9,6 +7,7 @@ function App() {
       <button onClick={OnBtnClicked}>ON</button>
       <button onClick={OffBtnClicked}>OFF</button>
       <button onClick={reqStatBtnClicked}>Request status</button>
+      <button onClick={exBtnClicked}>Example</button>
     </>
   );
 }

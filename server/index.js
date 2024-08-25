@@ -29,7 +29,7 @@ app.get('/on',async (req,res) => {
 
     res.send(text)
 })
-app.get('/off'/'})*/,async (req,res) => {
+app.get('/off',async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
