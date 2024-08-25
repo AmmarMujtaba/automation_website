@@ -1,6 +1,6 @@
 export function OnBtnClicked(){
     console.log('inside on handler')
-    fetch('https://as-server-orpin.vercel.app/example')
+    fetch('https://as-server-orpin.vercel.app/on')
     .then((response) => {
         return response.text()
     })
@@ -10,7 +10,7 @@ export function OnBtnClicked(){
 }
 export function OffBtnClicked(){
     console.log('inside off handler')
-    fetch('https://as-server-orpin.vercel.app/example')
+    fetch('https://as-server-orpin.vercel.app/off')
     .then((response) => {
         return response.text()
     })
