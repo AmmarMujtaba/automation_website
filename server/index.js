@@ -13,6 +13,12 @@ const client = new MongoClient(dbUri)
 await client.connect()
 const collection = client.db('myDB').collection('cardiology')
 
+app.get('/example'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
+    //find ip from database
+    const data = await collection.findOne({"_id":1})
+
+    res.send(data.ip)
+})
 app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
