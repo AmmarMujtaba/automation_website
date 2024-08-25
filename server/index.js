@@ -11,13 +11,13 @@ const client = new MongoClient(dbUri)
 await client.connect()
 const collection = client.db('myDB').collection('cardiology')
 
-app.get('/example'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
+app.get('/example',async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
     res.send(data.ip)
 })
-app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
+app.get('/on',async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
@@ -29,7 +29,7 @@ app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req
 
     res.send(text)
 })
-app.get('/off'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
+app.get('/off'/'})*/,async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
@@ -49,9 +49,15 @@ app.get('/changeip',async (req,res) => {
 
     res.send(`ipChanged:${newIp}`)
 })
-app.get('/example',async (req,res) => {
+app.get('/reqstat',async (req,res) => {
+    //fetch fan status from esp
+    const response = await fetch(`http://${data.ip}/reqstat`)
+    if(!response.ok){
+        res.send("Response not ok")
+    }
+    const data = await response.json()
 
-    res.send('AlhamdulILLAH! example working')
+    res.send(data)
 })
 
 app.listen(443,() => {
