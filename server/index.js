@@ -21,25 +21,15 @@ app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
-    fetch(`http://${data.ip}/on`)
-    .then((res) => {
-        return res.text()
-    })
-    .then((text) => {
-        res.send(text)
-    })
+    const response = await fetch(`http://${data.ip}/on`)
+    res.send(response.text())
 })
 app.get('/off'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
-    fetch(`http://${data.ip}/off`)
-    .then((res) => {
-        return res.text()
-    })
-    .then((text) => {
-        res.send(text)
-    })
+    const response = await fetch(`http://${data.ip}/off`)
+    res.send(response.text())
 })
 app.get('/changeip',async (req,res) => {
     const newIp = req.query.ip
