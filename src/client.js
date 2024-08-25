@@ -28,7 +28,7 @@ export function reqStatBtnClicked(){
         console.log('response: ',data)
     })
 }
-export function reqStatBtnClicked(){
+export function exBtnClicked(){
     console.log('inside reqstat handler')
     fetch('https://as-server-orpin.vercel.app/example')
     .then((response) => {
