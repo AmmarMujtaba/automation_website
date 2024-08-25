@@ -1,6 +1,7 @@
 import './App.css';
 import {OnBtnClicked} from './client.js'
 import {OffBtnClicked} from './client.js'
+import { reqStatBtnClicked } from './client.js';
 
 function App() {
   return (
