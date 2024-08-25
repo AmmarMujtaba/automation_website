@@ -15,7 +15,9 @@ app.get('/example',async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
-    res.send(data.ip)
+    const response = {value: 'text value'}
+
+    res.send(response)
 })
 app.get('/on',async (req,res) => {
     //find ip from database
