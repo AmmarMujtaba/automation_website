@@ -28,8 +28,6 @@ app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req
     .then((text) => {
         res.send(text)
     })
-
-    res.send("successful")
 })
 app.get('/off'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
     //find ip from database
