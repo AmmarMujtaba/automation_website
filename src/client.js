@@ -18,3 +18,13 @@ export function OffBtnClicked(){
         console.log('response: ',text)
     })
 }
+export function reqStatBtnClicked(){
+    console.log('inside reqstat handler')
+    fetch('https://as-server-orpin.vercel.app/reqstat')
+    .then((response) => {
+        return response.json()
+    })
+    .then((data) => {
+        console.log('response: ',data)
+    })
+}

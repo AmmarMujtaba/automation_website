@@ -50,14 +50,17 @@ app.get('/changeip',async (req,res) => {
     res.send(`ipChanged:${newIp}`)
 })
 app.get('/reqstat',async (req,res) => {
+    //find ip from database
+    const data = await collection.findOne({"_id":1})
+    
     //fetch fan status from esp
     const response = await fetch(`http://${data.ip}/reqstat`)
     if(!response.ok){
         res.send("Response not ok")
     }
-    const data = await response.json()
+    const jsonData = await response.json()
 
-    res.send(data)
+    res.send(jsonData)
 })
 
 app.listen(443,() => {

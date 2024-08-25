@@ -7,6 +7,7 @@ function App() {
     <>
       <button onClick={OnBtnClicked}>ON</button>
       <button onClick={OffBtnClicked}>OFF</button>
+      <button onClick={reqStatBtnClicked}>Request status</button>
     </>
   );
 }
