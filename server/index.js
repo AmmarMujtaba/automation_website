@@ -22,14 +22,24 @@ app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req
     const data = await collection.findOne({"_id":1})
 
     const response = await fetch(`http://${data.ip}/on`)
-    res.send(response.text())
+    if(!response.ok){
+        res.send("Response not ok")
+    }
+    const text = await response.text()
+
+    res.send(text)
 })
 app.get('/off'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
     const response = await fetch(`http://${data.ip}/off`)
-    res.send(response.text())
+    if(!response.ok){
+        res.send("Response not ok")
+    }
+    const text = await response.text()
+
+    res.send(text)
 })
 app.get('/changeip',async (req,res) => {
     const newIp = req.query.ip
