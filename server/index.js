@@ -21,13 +21,13 @@ app.get('/on'/*,cors({origin:'https://automationsite.vercel.app/'})*/,async (req
     //find ip from database
     const data = await collection.findOne({"_id":1})
 
-    // fetch(`http://${data.ip}/on`)
-    // .then((res) => {
-    //     return res.text()
-    // })
-    // .then((text) => {
-    //     res.send(text)
-    // })
+    fetch(`http://${data.ip}/on`)
+    .then((res) => {
+        return res.text()
+    })
+    .then((text) => {
+        res.send(text)
+    })
 
     res.send("successful")
 })
