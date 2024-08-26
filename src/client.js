@@ -38,3 +38,13 @@ export function exBtnClicked(){
         console.log('response: ',data)
     })
 }
+export function chModeBtnClicked(){
+    console.log('inside reqstat handler')
+    fetch('https://as-server-orpin.vercel.app/changemode')
+    .then((response) => {
+        return response.text()
+    })
+    .then((data) => {
+        console.log('response: ',data)
+    })
+}
