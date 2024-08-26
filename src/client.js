@@ -22,7 +22,7 @@ export function reqStatBtnClicked(){
     console.log('inside reqstat handler')
     fetch('https://as-server-orpin.vercel.app/reqstat')
     .then((response) => {
-        return response.json()
+        return response.text()
     })
     .then((data) => {
         console.log('response: ',data)
