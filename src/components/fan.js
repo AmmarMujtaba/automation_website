@@ -48,14 +48,8 @@ export default function Fan (props){
     },[])
     return (
         <>
-            <p id='isFanOn'>The fan is <b>{() => {
-                if(props.status.isFanOn === '1'){return "ON"}
-                else if(props.status.isFanOn === '0'){return "OFF"}
-            }}</b></p>
-            <p id='isBtnOn'>The button is <b>{() => {
-                if(props.status.isBtnOn === '1'){return "ON"}
-                else if(props.status.isBtnOn === '0'){return "OFF"}
-            }}</b></p>
+            <p id='isFanOn'>The fan is <b>{(props.status.isFanOn === '1')?"ON":"OFF"}</b></p>
+            <p id='isBtnOn'>The button is <b>{(props.status.isBtnOn === '1')?"ON":"OFF"}</b></p>
             <button onClick={OnBtnClicked}>ON</button>
             <button onClick={OffBtnClicked}>OFF</button>
         </>
