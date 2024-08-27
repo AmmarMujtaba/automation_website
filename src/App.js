@@ -34,38 +34,30 @@ function App() {
     const text = await response.text()
     console.log('reqStat response: ',text)
 
-    console.log('changing status')
     setStatus((prevState) => ({
-        ...prevState,
-        isFanOn: text[0],
-        isBtnOn: text[1],
-        isAuto: text[2]
+      ...prevState,
+      isFanOn: text[0],
+      isBtnOn: text[1],
+      isAuto: text[2]
     }))
+    console.log('status changed')
   }
   useEffect(() => {request()},[])
 
   return (
     <>
-      {() => {
-        console.log('n of values',Object.values(status))
-        if(Object.values(status) > 0){
-          return(
-            <div>
-              <p id='isAuto'>The mode is <b>{status.isAuto === '1'?"Auto":"Manual"}</b></p>
-              <Fan status = {status} setStatus = {setStatus}/>
-              <button onClick={exBtnClicked}>Example</button>
-              <button onClick={chModeBtnClicked}>ChangeMode</button>
-            </div>
-          )
-        }
-        else{
-          return (
-            <div>
-              <h1>Loading...</h1>
-            </div>
-          )
-        }
-      }}
+      {(Object.values(status).length() > 0)?(
+        <div>
+          <p id='isAuto'>The mode is <b>{status.isAuto === '1'?"Auto":"Manual"}</b></p>
+          <Fan status = {status} setStatus = {setStatus}/>
+          <button onClick={exBtnClicked}>Example</button>
+          <button onClick={chModeBtnClicked}>ChangeMode</button>
+        </div>
+      ):(
+      <div>
+        <h1>Loading...</h1>
+      </div>
+      )}
     </>
   );
 }
