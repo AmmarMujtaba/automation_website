@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 export default function Fan (props){
     function OnBtnClicked(){
         console.log('inside on handler')
@@ -33,7 +35,7 @@ export default function Fan (props){
         console.log('ubs response: ',text)
 
         console.log('changing status')
-        setStatus((prevState) => ({
+        props.setStatus((prevState) => ({
             ...prevState,
             isBtnOn: text[1]
         }))

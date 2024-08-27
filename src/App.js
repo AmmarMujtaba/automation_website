@@ -47,8 +47,8 @@ function App() {
   return (
     <>
       {() => {
-        console.log('n of values',Object.values(state))
-        if(Object.values(state) > 0){
+        console.log('n of values',Object.values(status))
+        if(Object.values(status) > 0){
           return(
             <div>
               <p id='isAuto'>The mode is <b>{status.isAuto === '1'?"Auto":"Manual"}</b></p>
