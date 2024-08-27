@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      {(Object.values(status).length() > 0)?(
+      {(Object.values(status).length > 0)?(
         <div>
           <p id='isAuto'>The mode is <b>{status.isAuto === '1'?"Auto":"Manual"}</b></p>
           <Fan status = {status} setStatus = {setStatus}/>
