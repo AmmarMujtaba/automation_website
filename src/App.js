@@ -47,6 +47,7 @@ function App() {
   return (
     <>
       {() => {
+        console.log('n of values',Object.values(state))
         if(Object.values(state) > 0){
           return(
             <div>
