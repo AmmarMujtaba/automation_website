@@ -1,10 +1,33 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import {OnBtnClicked,OffBtnClicked,reqStatBtnClicked,exBtnClicked,chModeBtnClicked} from './client.js'
+import {exBtnClicked,chModeBtnClicked} from './client.js'
+import Fan from './components/fan.js';
+
 
 function App() {
   const [status, setStatus] = useState({})
 
+  function chModeBtnClicked(){
+    console.log('inside reqstat handler')
+    fetch('https://as-server-orpin.vercel.app/changemode')
+    .then((response) => {
+        return response.text()
+    })
+    .then((data) => {
+        setStatus((prev) => ({
+          ...prev,
+          isAuto: () => {
+            if(data == 'modeAuto'){
+              return '1'
+            }
+            else if(data == 'modeManual'){
+              return '0'
+            }
+          }
+        }))
+        console.log('response: ',data)
+    })
+}
   async function request(){
     console.log('inside useEffect')
     const response = await fetch('https://as-server-orpin.vercel.app/reqstat')
@@ -19,20 +42,29 @@ function App() {
         isAuto: text[2]
     }))
   }
-  useEffect(() => {
-    request()
-  },[])
+  useEffect(() => {request()},[])
 
   return (
     <>
-      <p id='isFanOn'>The fan is <b>{status.isFanOn?"ON":"OFF"}</b></p>
-      <p id='isAuto'>The mode is <b>{status.isAuto?"Auto":"Manual"}</b></p>
-      <p id='isBtnOn'>The button is <b>{status.isBtnOn?"ON":"OFF"}</b></p>
-      <button onClick={OnBtnClicked}>ON</button>
-      <button onClick={OffBtnClicked}>OFF</button>
-      <button onClick={reqStatBtnClicked}>Request status</button>
-      <button onClick={exBtnClicked}>Example</button>
-      <button onClick={chModeBtnClicked}>ChangeMode</button>
+      {() => {
+        if(Object.values(state) > 0){
+          return(
+            <div>
+              <p id='isAuto'>The mode is <b>{status.isAuto?"Auto":"Manual"}</b></p>
+              <Fan status = {status} setStatus = {setStatus}/>
+              <button onClick={exBtnClicked}>Example</button>
+              <button onClick={chModeBtnClicked}>ChangeMode</button>
+            </div>
+          )
+        }
+        else{
+          return (
+            <div>
+              <h1>Loading...</h1>
+            </div>
+          )
+        }
+      }}
     </>
   );
 }
