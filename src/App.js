@@ -51,7 +51,7 @@ function App() {
         if(Object.values(state) > 0){
           return(
             <div>
-              <p id='isAuto'>The mode is <b>{status.isAuto?"Auto":"Manual"}</b></p>
+              <p id='isAuto'>The mode is <b>{status.isAuto === '1'?"Auto":"Manual"}</b></p>
               <Fan status = {status} setStatus = {setStatus}/>
               <button onClick={exBtnClicked}>Example</button>
               <button onClick={chModeBtnClicked}>ChangeMode</button>
