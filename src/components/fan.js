@@ -40,12 +40,12 @@ export default function Fan (props){
             isBtnOn: text[1]
         }))
     }
-    // useEffect(() => {
-    //     const interval = setInterval(updateBtnStatus,5000)
-    //     return () => {
-    //         clearInterval(interval)
-    //     }
-    // },[])
+    useEffect(() => {
+        const interval = setInterval(updateBtnStatus,5000)
+        return () => {
+            clearInterval(interval)
+        }
+    },[])
     return (
         <>
             <p id='isFanOn'>The fan is <b>{(props.status.isFanOn === '1')?"ON":"OFF"}</b></p>
