@@ -3,7 +3,7 @@ import cors from 'cors'
 import fetch from 'node-fetch'
 import {MongoClient} from 'mongodb'
 import WebSocket from 'ws'
-const wsServer = new WebSocket.WebSocketServer({port:443})
+const wsServer = new WebSocket.WebSocketServer({port:5555})
 
 const app = express()
 
