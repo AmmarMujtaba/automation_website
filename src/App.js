@@ -3,20 +3,20 @@ import './App.css';
 import {exBtnClicked,chModeBtnClicked} from './client.js'
 import Fan from './components/fan.js';
 
-let socket = []
-socket.onopen = () => {
-  console.log('connection established')
-  socket.send('client: connected')
-}
-socket.onmessage = (event) => {
-  console.log('message: ',event.data)
-}
-socket.onclose = (event) => {
-  console.log('connection closed ',event)
-}
-socket.onerror = (error) => {
-  console.log('error: ',error)
-}
+// let socket = []
+// socket.onopen = () => {
+//   console.log('connection established')
+//   socket.send('client: connected')
+// }
+// socket.onmessage = (event) => {
+//   console.log('message: ',event.data)
+// }
+// socket.onclose = (event) => {
+//   console.log('connection closed ',event)
+// }
+// socket.onerror = (error) => {
+//   console.log('error: ',error)
+// }
 
 function App() {
   const [status, setStatus] = useState({})
@@ -58,7 +58,7 @@ function App() {
   }
   useEffect(() => {
     request()
-    socket = new WebSocket('wss://as-server-orpin.vercel.app:5555')
+    // socket = new WebSocket('wss://as-server-orpin.vercel.app:5555')
   },[])
 
   return (
