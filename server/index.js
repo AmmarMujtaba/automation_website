@@ -2,8 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
 import {MongoClient} from 'mongodb'
-import WebSocket from 'ws'
-import http from 'http'
+// import WebSocket from 'ws'
+// import http from 'http'
 // const httpServer = http.createServer(app)
 
 const app = express()
