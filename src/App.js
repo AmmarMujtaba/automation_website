@@ -6,6 +6,20 @@ import Fan from './components/fan.js';
 
 function App() {
   const [status, setStatus] = useState({})
+  const socket = null
+  socket.onopen = () => {
+    console.log('connection established')
+    socket.send('client: connected')
+  }
+  socket.onmessage = (event) => {
+    console.log('message: ',event.data)
+  }
+  socket.onclose = (event) => {
+    console.log('connection closed ',event)
+  }
+  socket.onerror = (error) => {
+    console.log('error: ',error)
+  }
 
   function chModeBtnClicked(){
     console.log('inside reqstat handler')
@@ -27,7 +41,7 @@ function App() {
         }))
         console.log('response: ',data)
     })
-}
+  }
   async function request(){
     console.log('inside useEffect')
     const response = await fetch('https://as-server-orpin.vercel.app/reqstat')
@@ -41,6 +55,8 @@ function App() {
       isAuto: text[2]
     }))
     console.log('status changed')
+
+    socket = new WebSocket('ws://as-server-orpin.vercel.app:55555')
   }
   useEffect(() => {request()},[])
 
