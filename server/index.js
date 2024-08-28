@@ -2,9 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
 import {MongoClient} from 'mongodb'
-// const ws = require('ws')
-// import WebSocket from ws
-// const wsServer = new WebSocket.WebSocketServer({port:5555})
+import WebSocket from 'ws'
+const wsServer = new WebSocket.WebSocketServer({port:443})
 
 const app = express()
 
@@ -16,18 +15,18 @@ await mongoClient.connect()
 const collection = mongoClient.db('myDB').collection('cardiology')
 
 // const client = null
-// wsServer.on('connection',(ws) => {
-//     ws.send('s=> client connected')
-//     client = ws
-//     ws.on('message',(response) => {
-//         const text = new TextDecoder().decode(response)
-//         ws.send('S=> message: ',text)
-//     })
-//     ws.on('close',(ws) => {
-//         console.log('client disconnected')
-//         client = null
-//     })
-// })
+wsServer.on('connection',(ws) => {
+    ws.send('s=> client connected')
+    client = ws
+    ws.on('message',(response) => {
+        const text = new TextDecoder().decode(response)
+        ws.send('S=> message: ',text)
+    })
+    ws.on('close',(ws) => {
+        console.log('client disconnected')
+        client = null
+    })
+})
 
 app.get('/example',async (req,res) => {
     //find ip from database
