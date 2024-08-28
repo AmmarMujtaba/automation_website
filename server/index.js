@@ -3,7 +3,16 @@ import cors from 'cors'
 import fetch from 'node-fetch'
 import {MongoClient} from 'mongodb'
 import WebSocket from 'ws'
-const wsServer = new WebSocket.WebSocketServer({port:5555})
+import http from 'http'
+const server = http.createServer((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+    res.writeHead(200, {'Content-Type':'text/plain'})
+    res.end('websocket server running')
+})
+const wsServer = new WebSocket.WebSocketServer({server})
 
 const app = express()
 
