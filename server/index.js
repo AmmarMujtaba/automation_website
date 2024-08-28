@@ -85,13 +85,13 @@ app.get('/reqstat',async (req,res) => {
     const data = await collection.findOne({"_id":1})
     
     //fetch fan status from esp
-    // const response = await fetch(`http://${data.ip}/reqstat`)
-    // if(!response.ok){
-    //     res.send("Response not ok")
-    // }
-    // const text = await response.text()
+    const response = await fetch(`http://${data.ip}/reqstat`)
+    if(!response.ok){
+        res.send("Response not ok")
+    }
+    const text = await response.text()
 
-    res.send("reqstat: server is ok")
+    res.send(text)
 })
 app.get('/changemode',async (req,res) => {
     //find ip from database
