@@ -30,6 +30,9 @@ const collection = mongoClient.db('myDB').collection('cardiology')
 //     })
 // })
 
+app.get('/',(req,res) => {
+    res.send("server is ok")
+})
 app.get('/example',async (req,res) => {
     //find ip from database
     const data = await collection.findOne({"_id":1})
