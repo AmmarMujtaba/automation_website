@@ -2,33 +2,33 @@ import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
 import {MongoClient} from 'mongodb'
-// import WebSocket from 'ws'
-// import http from 'http'
-// const httpServer = http.createServer(app)
+import http from 'http'
+import { WebSocketServer } from 'ws'
 
 const app = express()
-
 app.use(cors())
+
 
 const dbUri = 'mongodb+srv://ammar:ammar786@atlascluster.8drgp.mongodb.net/'
 const mongoClient = new MongoClient(dbUri)
 await mongoClient.connect()
 const collection = mongoClient.db('myDB').collection('cardiology')
 
-// const wsServer = new WebSocket.WebSocketServer({httpServer})
-// // const client = null
-// wsServer.on('connection',(ws) => {
-//     ws.send('s=> client connected')
-//     client = ws
-//     ws.on('message',(response) => {
-//         const text = new TextDecoder().decode(response)
-//         ws.send('S=> message: ',text)
-//     })
-//     ws.on('close',(ws) => {
-//         console.log('client disconnected')
-//         client = null
-//     })
-// })
+const httpServer = http.createServer(app)
+// const client = null
+const wsServer = new WebSocketServer({server:httpServer})
+wsServer.on('connection',(ws) => {
+    ws.send('s=> client connected')
+    client = ws
+    ws.on('message',(response) => {
+        const text = new TextDecoder().decode(response)
+        ws.send('S=> message: ',text)
+    })
+    ws.on('close',(ws) => {
+        console.log('client disconnected')
+        client = null
+    })
+})
 
 app.get('/',(req,res) => {
     res.send("server is ok")
@@ -118,3 +118,4 @@ app.get('/updateClient',async (req,res) => {
 app.listen(443,() => {
     console.log('server listening on port 443')
 })
+httpServer.listen(5555)

@@ -3,7 +3,7 @@ import './App.css';
 import {exBtnClicked} from './client.js'
 import Fan from './components/fan.js';
 
-let socket = new WebSocket('wss://as-server-orpin.vercel.app')
+let socket = new WebSocket('ws://as-server-orpin.vercel.app:5555')
 socket.onopen = () => {
   console.log('connection established')
   socket.send('c=> connected')
