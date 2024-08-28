@@ -58,7 +58,7 @@ function App() {
   }
   useEffect(() => {
     request()
-    socket = new WebSocket('ws://as-server-orpin.vercel.app:5555')
+    socket = new WebSocket('wss://as-server-orpin.vercel.app:5555')
   },[])
 
   return (
