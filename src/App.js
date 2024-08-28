@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import {exBtnClicked,chModeBtnClicked} from './client.js'
+import {exBtnClicked} from './client.js'
 import Fan from './components/fan.js';
 
 // let socket = []
@@ -40,6 +40,7 @@ function App() {
           }
         }))
         console.log('response: ',data)
+        console.log('isAuto: ',status.isAuto)
     })
   }
   async function request(){
