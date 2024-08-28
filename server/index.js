@@ -2,21 +2,20 @@ import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
 import {MongoClient} from 'mongodb'
-import http from 'http'
+import https from 'https'
 import { WebSocketServer } from 'ws'
 
 const app = express()
 app.use(cors())
-
 
 const dbUri = 'mongodb+srv://ammar:ammar786@atlascluster.8drgp.mongodb.net/'
 const mongoClient = new MongoClient(dbUri)
 await mongoClient.connect()
 const collection = mongoClient.db('myDB').collection('cardiology')
 
-const httpServer = http.createServer(app)
+const httpsServer = https.createServer(app)
 // const client = null
-const wsServer = new WebSocketServer({server:httpServer})
+const wsServer = new WebSocketServer({httpsServer})
 wsServer.on('connection',(ws) => {
     ws.send('s=> client connected')
     client = ws
@@ -118,4 +117,3 @@ app.get('/updateClient',async (req,res) => {
 app.listen(443,() => {
     console.log('server listening on port 443')
 })
-httpServer.listen(5555)
