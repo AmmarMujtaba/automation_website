@@ -13,21 +13,21 @@ const mongoClient = new MongoClient(dbUri)
 await mongoClient.connect()
 const collection = mongoClient.db('myDB').collection('cardiology')
 
-const httpsServer = https.createServer(app)
-// const client = null
-const wsServer = new WebSocketServer({httpsServer})
-wsServer.on('connection',(ws) => {
-    ws.send('s=> client connected')
-    client = ws
-    ws.on('message',(response) => {
-        const text = new TextDecoder().decode(response)
-        ws.send('S=> message: ',text)
-    })
-    ws.on('close',(ws) => {
-        console.log('client disconnected')
-        client = null
-    })
-})
+// const httpsServer = https.createServer(app)
+// // const client = null
+// const wsServer = new WebSocketServer({httpsServer})
+// wsServer.on('connection',(ws) => {
+//     ws.send('s=> client connected')
+//     client = ws
+//     ws.on('message',(response) => {
+//         const text = new TextDecoder().decode(response)
+//         ws.send('S=> message: ',text)
+//     })
+//     ws.on('close',(ws) => {
+//         console.log('client disconnected')
+//         client = null
+//     })
+// })
 
 app.get('/',(req,res) => {
     res.send("server is ok")
