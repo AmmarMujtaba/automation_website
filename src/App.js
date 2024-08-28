@@ -28,20 +28,13 @@ function App() {
         return response.text()
     })
     .then((data) => {
-        setStatus((prev) => ({
-          ...prev,
-          isAuto: () => {
-            if(data == 'modeAuto'){
-              return '1'
-            }
-            else if(data == 'modeManual'){
-              return '0'
-            }
-          }
-        }))
-        console.log('response: ',data)
-        console.log('isAuto: ',status.isAuto)
-    })
+      setStatus((prev) => ({
+        ...prev,
+        isAuto: ((data == 'modeAuto')?'1':(data == 'modeManual')?'0':'error')
+      }))
+      console.log('response: ',data)
+      console.log('isAuto: ',status.isAuto)
+  })
   }
   async function request(){
     console.log('inside useEffect')
