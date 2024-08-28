@@ -22,7 +22,7 @@ const mongoClient = new MongoClient(dbUri)
 await mongoClient.connect()
 const collection = mongoClient.db('myDB').collection('cardiology')
 
-const wsServer = new WebSocket.WebSocketServer({app})
+const wsServer = new WebSocket.WebSocketServer({server: app})
 // const client = null
 wsServer.on('connection',(ws) => {
     ws.send('s=> client connected')
