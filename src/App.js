@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import {exBtnClicked} from './client.js'
 import Fan from './components/fan.js';
+import WebSocket from 'ws';
 
 let socket = new WebSocket('wss://as-server-orpin.vercel.app:5555')
 socket.onopen = () => {
