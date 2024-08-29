@@ -13,16 +13,16 @@ const mongoClient = new MongoClient(dbUri)
 await mongoClient.connect()
 const collection = mongoClient.db('myDB').collection('cardiology')
 
-const httpServer = http.createServer()
-const socketServer = new Server(httpServer,{
-    cors: {origin: '*'}
-})
-socketServer.on('connection', (socket) => {
-    socket.emit('established', 'message from server')
-})
-httpServer.listen(5555, () => {
-    console.log('server is listening')
-})
+// const httpServer = http.createServer()
+// const socketServer = new Server(httpServer,{
+//     cors: {origin: '*'}
+// })
+// socketServer.on('connection', (socket) => {
+//     socket.emit('established', 'message from server')
+// })
+// httpServer.listen(5555, () => {
+//     console.log('server is listening')
+// })
 
 app.get('/',(req,res) => {
     res.send("server is ok")
@@ -46,13 +46,6 @@ app.get('/on',async (req,res) => {
     const text = await response.text()
     
     res.send(text)
-    
-    //ex
-    // if(client != null){
-    //     if(client.readyState == WebSocket.OPEN){
-    //         client.send("s=> ",text)
-    //     }
-    // }    
 })
 app.get('/off',async (req,res) => {
     //find ip from database
@@ -102,13 +95,8 @@ app.get('/changemode',async (req,res) => {
 })
 app.get('/updateClient',async (req,res) => {
     const message = req.query.message
-    if(client != null){
-        if(client.readyState == WebSocket.OPEN){
-            client.send(message)
-        }
-    }
 })
 
-// app.listen(443,() => {
-//     console.log('server listening on port 443')
-// })
+app.listen(443,() => {
+    console.log('server listening on port 443')
+})

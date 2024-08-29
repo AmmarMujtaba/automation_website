@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import {exBtnClicked} from './client.js'
 import Fan from './components/fan.js';
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 
-const socket = io('https://as-server-orpin.vercel.app:5555')
+// const socket = io('https://as-server-orpin.vercel.app:5555')
 
 function App() {
   const [status, setStatus] = useState({})
@@ -40,11 +40,11 @@ function App() {
   }
   useEffect(() => {
     request()
-    socket.on('connect',() => {
-      socket.on('established', (data) => {
-        console.log('server is connected, data: ',data)
-      })
-    })
+    // socket.on('connect',() => {
+    //   socket.on('established', (data) => {
+    //     console.log('server is connected, data: ',data)
+    //   })
+    // })
   },[])
 
   return (
