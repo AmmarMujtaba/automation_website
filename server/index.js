@@ -84,7 +84,7 @@ app.get('/changemode',async (req,res) => {
 app.get('/updateclient',async (req,res) => {
     const message = req.query.message
 
-    console.log('inside handler')
+    console.    log('inside handler')
     const ably = new Realtime('gf7lDA.lZTm9A:OO2S5MaOGvSDbF5_atGjC6_B9UGlwqnbEEYR1OmHWFA')
     await ably.connection.once('connected')
     console.log('ably is connected')
