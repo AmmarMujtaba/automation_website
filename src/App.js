@@ -37,7 +37,7 @@ function App() {
           if(prev.isBtnOn === '1'){
             return{
               ...prev,
-              isBtnOn: '1'
+              isBtnOn: '0'
             }
           }
           else if(prev.isBtnOn === '0'){
