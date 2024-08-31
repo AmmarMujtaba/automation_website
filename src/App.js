@@ -31,6 +31,7 @@ function App() {
         }))
       }
       else if(message.data === 'manualFanOn'){
+        console.log('inside else if clause, isAuto: ',status.isAuto)
         if(status.isAuto === '0'){
           setStatus((prev) => ({
             ...prev,
@@ -42,6 +43,7 @@ function App() {
         }
       }
       else if(message.data === 'manualFanOff'){
+        console.log('inside else if clause, isAuto: ',status.isAuto)
         if(status.isAuto === '0'){
           setStatus((prev) => ({
             ...prev,
