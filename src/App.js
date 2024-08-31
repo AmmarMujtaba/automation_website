@@ -32,27 +32,41 @@ function App() {
       }
       else if(message.data === 'manualFanOn'){
         console.log('inside else if clause, isAuto: ',status.isAuto)
-        if(status.isAuto === '0'){
-          setStatus((prev) => ({
-            ...prev,
-            isFanOn: '1'
-          }))
-        }
-        else if(status.isAuto === '1'){
-          console.log('can\'t handle fan manually')
-        }
+        setStatus((prev) => {
+          if(prev.isAuto === '0'){
+            if(prev.isFanOn === '0'){
+              return {
+                ...prev,
+                isFanOn: '1'
+              }
+            }
+            else{
+              console.log('fan already on')
+            }
+          }
+          else if(prev.isAuto === '1'){
+            console.log('can\'t handle fan manually in auto mode')
+          }
+        })
       }
       else if(message.data === 'manualFanOff'){
         console.log('inside else if clause, isAuto: ',status.isAuto)
-        if(status.isAuto === '0'){
-          setStatus((prev) => ({
-            ...prev,
-            isFanOn: '0'
-          }))
-        }
-        else if(status.isAuto === '1'){
-          console.log('can\'t handle fan manually')
-        }
+          setStatus((prev) => {
+            if(prev.isAuto === '0'){
+              if(prev.isFanOn === '1'){
+                return {
+                  ...prev,
+                  isFanOn: '0'
+                }
+              }
+              else{
+                console.log('fan already off')
+              }
+            }
+            else if(prev.isAuto === '1'){
+              console.log('can\'t handle fan manually in auto mode')
+            }
+          })
       }
     })
   }
@@ -68,7 +82,6 @@ function App() {
         isAuto: ((data == 'modeAuto')?'1':(data == 'modeManual')?'0':'error')
       }))
       console.log('response: ',data)
-      console.log('isAuto: ',status.isAuto)
   })
   }
   async function request(){
