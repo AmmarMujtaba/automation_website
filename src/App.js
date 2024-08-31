@@ -31,24 +31,24 @@ function App() {
         }))
       }
       else if(message.data === 'manualFanOn'){
-        if(status.isAuto === '1'){
+        if(status.isAuto === '0'){
           setStatus((prev) => ({
             ...prev,
             isFanOn: '1'
           }))
         }
-        else{
+        else if(status.isAuto === '1'){
           console.log('can\'t handle fan manually')
         }
       }
       else if(message.data === 'manualFanOff'){
-        if(status.isAuto === '1'){
+        if(status.isAuto === '0'){
           setStatus((prev) => ({
             ...prev,
             isFanOn: '0'
           }))
         }
-        else{
+        else if(status.isAuto === '1'){
           console.log('can\'t handle fan manually')
         }
       }
