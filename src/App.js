@@ -86,7 +86,7 @@ function App() {
     console.log('status changed')
   }
 
-  useEffect(() => {request();ablyHandler();console.log('useEffect isAuto: ',status.isAuto)},[])
+  useEffect(() => {request();ablyHandler();},[])
 
   return (
     <>
