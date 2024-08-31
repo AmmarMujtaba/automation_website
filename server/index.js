@@ -10,19 +10,8 @@ app.use(cors())
 
 const dbUri = 'mongodb+srv://ammar:ammar786@atlascluster.8drgp.mongodb.net/'
 const mongoClient = new MongoClient(dbUri)
-await mongoClient.connect()
+// await mongoClient.connect()
 const collection = mongoClient.db('myDB').collection('cardiology')
-
-// const httpServer = http.createServer()
-// const socketServer = new Server(httpServer,{
-//     cors: {origin: '*'}
-// })
-// socketServer.on('connection', (socket) => {
-//     socket.emit('established', 'message from server')
-// })
-// httpServer.listen(5555, () => {
-//     console.log('server is listening')
-// })
 
 app.get('/',(req,res) => {
     res.send("server is ok")
@@ -93,8 +82,21 @@ app.get('/changemode',async (req,res) => {
 
     res.send(text)
 })
-app.get('/updateClient',async (req,res) => {
+app.get('/updateclient',async (req,res) => {
     const message = req.query.message
+
+    console.log('inside handler')
+    const ably = new Realtime('gf7lDA.lZTm9A:OO2S5MaOGvSDbF5_atGjC6_B9UGlwqnbEEYR1OmHWFA')
+    await ably.connection.once('connected')
+    console.log('ably is connected')
+
+    const channel = await ably.channels.get('roomautomation')
+    console.log('channel accessible')
+    
+    channel.publish('arduino',message)
+
+    //send back response
+    res.send('updated')
 })
 
 app.listen(443,() => {

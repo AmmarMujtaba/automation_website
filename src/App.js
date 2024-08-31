@@ -2,13 +2,48 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import {exBtnClicked} from './client.js'
 import Fan from './components/fan.js';
-// import io from 'socket.io-client'
-
-// const socket = io('https://as-server-orpin.vercel.app:5555')
+import { Realtime } from 'ably';
 
 function App() {
   const [status, setStatus] = useState({})
-
+  
+  async function ablyHandler(){
+    console.log('inside handler')
+    const ably = new Realtime('gf7lDA.lZTm9A:OO2S5MaOGvSDbF5_atGjC6_B9UGlwqnbEEYR1OmHWFA')
+    await ably.connection.once('connected')
+    console.log('ably is connected')
+  
+    const channel = await ably.channels.get('roomautomation')
+    console.log('channel created')
+  
+    await channel.subscribe('arduino',(message) => {
+      console.log('message: ',message.data)
+      if(message.data === 'btnOn'){
+        setStatus((prev) => ({
+          ...prev,
+          isBtnOn: '1'
+        }))
+      }
+      else if(message.data === 'btnOff'){
+        setStatus((prev) => ({
+          ...prev,
+          isBtnOn: '0'
+        }))
+      }
+      else if(message.data === 'manualFanOn'){
+        setStatus((prev) => ({
+          ...prev,
+          isFanOn: '1'
+        }))
+      }
+      else if(message.data === 'manualFanOff'){
+        setStatus((prev) => ({
+          ...prev,
+          isFanOn: '0'
+        }))
+      }
+    })
+  }
   function chModeBtnClicked(){
     console.log('inside reqstat handler')
     fetch('https://as-server-orpin.vercel.app/changemode')
@@ -38,14 +73,8 @@ function App() {
     }))
     console.log('status changed')
   }
-  useEffect(() => {
-    request()
-    // socket.on('connect',() => {
-    //   socket.on('established', (data) => {
-    //     console.log('server is connected, data: ',data)
-    //   })
-    // })
-  },[])
+
+  useEffect(() => {request();ablyHandler();},[])
 
   return (
     <>

@@ -56,8 +56,8 @@ export default function Fan (props){
         <>
             <p id='isFanOn'>The fan is <b>{(props.status.isFanOn === '1')?"ON":"OFF"}</b></p>
             <p id='isBtnOn'>The button is <b>{(props.status.isBtnOn === '1')?"ON":"OFF"}</b></p>
-            <button className="fanBtn" disabled={props.status.isAuto?false:true} onClick={OnBtnClicked}>ON</button>
-            <button className="fanBtn" disabled={props.status.isAuto?false:true} onClick={OffBtnClicked}>OFF</button>
+            <button className="fanBtn" disabled={(props.status.isAuto === '1')?false:(props.status.isAuto === '0')?true:false} onClick={OnBtnClicked}>ON</button>
+            <button className="fanBtn" disabled={(props.status.isAuto === '1')?false:(props.status.isAuto === '0')?true:false} onClick={OffBtnClicked}>OFF</button>
         </>
     )
 }
