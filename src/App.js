@@ -19,19 +19,32 @@ function App() {
     await channel.subscribe('arduino',(message) => {
       console.log('message: ',message.data)
       if(message.data === 'btnOn'){
-        setStatus((prev) => ({
-          ...prev,
-          isBtnOn: '1'
-        }))
+        setStatus((prev) => {
+          if(prev.isBtnOn === '0'){
+            return{
+              ...prev,
+              isBtnOn: '1'
+            }
+          }
+          else if(prev.isBtnOn === '1'){
+            console.log('button already on')
+          }
+        })
       }
       else if(message.data === 'btnOff'){
-        setStatus((prev) => ({
-          ...prev,
-          isBtnOn: '0'
-        }))
+        setStatus((prev) => {
+          if(prev.isBtnOn === '1'){
+            return{
+              ...prev,
+              isBtnOn: '1'
+            }
+          }
+          else if(prev.isBtnOn === '0'){
+            console.log('button already off')
+          }
+        })
       }
       else if(message.data === 'manualFanOn'){
-        console.log('inside else if clause, isAuto: ',status.isAuto)
         setStatus((prev) => {
           if(prev.isAuto === '0'){
             if(prev.isFanOn === '0'){
@@ -42,15 +55,16 @@ function App() {
             }
             else{
               console.log('fan already on')
+              return prev
             }
           }
           else if(prev.isAuto === '1'){
             console.log('can\'t handle fan manually in auto mode')
+            return prev
           }
         })
       }
       else if(message.data === 'manualFanOff'){
-        console.log('inside else if clause, isAuto: ',status.isAuto)
           setStatus((prev) => {
             if(prev.isAuto === '0'){
               if(prev.isFanOn === '1'){
@@ -61,10 +75,12 @@ function App() {
               }
               else{
                 console.log('fan already off')
+                return prev
               }
             }
             else if(prev.isAuto === '1'){
               console.log('can\'t handle fan manually in auto mode')
+              return prev
             }
           })
       }
