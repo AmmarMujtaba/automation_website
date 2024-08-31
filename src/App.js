@@ -28,6 +28,7 @@ function App() {
           }
           else if(prev.isBtnOn === '1'){
             console.log('button already on')
+            return prev
           }
         })
       }
@@ -41,6 +42,7 @@ function App() {
           }
           else if(prev.isBtnOn === '0'){
             console.log('button already off')
+            return prev
           }
         })
       }
