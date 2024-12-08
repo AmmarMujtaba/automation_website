@@ -15,27 +15,31 @@ const collection = mongoClient.db('myDB').collection('cardiology')
 app.get('/',(req,res) => {
     res.send("server is ok")
 })
-app.get('/changeStatus',async (req,res) => {
+app.get('/example',async (req,res) => {
     //find ip from database
-    const ipAddress = await collection.findOne({"_id":1})
+    const data = await collection.findOne({"_id":1})
 
-    const id = req.query.id
+    const response = {value: 'text value'}
 
-    const response = await fetch(`http://${ipAddress.ip}/changeStatus?id=${id}`)
+    res.send(response)
+})
+app.get('/on',async (req,res) => {
+    //find ip from database
+    const data = await collection.findOne({"_id":1})
+
+    const response = await fetch(`http://${data.ip}/on`)
     if(!response.ok){
         res.send("Response not ok")
     }
     const text = await response.text()
-
+    
     res.send(text)
 })
-app.get('/getReading',async (req,res) => {
+app.get('/off',async (req,res) => {
     //find ip from database
-    const ipAddress = await collection.findOne({"_id":1})
+    const data = await collection.findOne({"_id":1})
 
-    const id = req.query.id
-
-    const response = await fetch(`http://${ipAddress.ip}/getReading?id=${id}`)
+    const response = await fetch(`http://${data.ip}/off`)
     if(!response.ok){
         res.send("Response not ok")
     }
@@ -53,10 +57,23 @@ app.get('/changeip',async (req,res) => {
 })
 app.get('/reqstat',async (req,res) => {
     //find ip from database
-    const ipAddress = await collection.findOne({"_id":1})
+    const data = await collection.findOne({"_id":1})
     
     //fetch fan status from esp
-    const response = await fetch(`http://${ipAddress.ip}/reqstat`)
+    const response = await fetch(`http://${data.ip}/reqstat`)
+    if(!response.ok){
+        res.send("Response not ok")
+    }
+    const text = await response.text()
+
+    res.send(text)
+})
+app.get('/changemode',async (req,res) => {
+    //find ip from database
+    const data = await collection.findOne({"_id":1})
+    
+    //fetch fan status from esp
+    const response = await fetch(`http://${data.ip}/changemode`)
     if(!response.ok){
         res.send("Response not ok")
     }
@@ -67,7 +84,7 @@ app.get('/reqstat',async (req,res) => {
 app.get('/updateclient',async (req,res) => {
     const message = req.query.message
 
-    console.log('inside handler')
+    console.    log('inside handler')
     const ably = new Realtime('gf7lDA.lZTm9A:OO2S5MaOGvSDbF5_atGjC6_B9UGlwqnbEEYR1OmHWFA')
     await ably.connection.once('connected')
     console.log('ably is connected')
