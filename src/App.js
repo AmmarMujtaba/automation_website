@@ -4,23 +4,23 @@ import './App.css';
 function App() {
   const [text,setText] = useState("")
   function btnReadingClicked(){
-    // fetch('https://as-server-orpin.vercel.app/getReading')
-    // .then((response) => {
-    //   return response.text()
-    // })
-    // .then((text) => {
-    //   setText(text)
-    //   console.log('response: ',text)
-    // })
+    fetch('https://as-server-orpin.vercel.app/getReading')
+    .then((response) => {
+      return response.text()
+    })
+    .then((text) => {
+      setText(text)
+      console.log('response: ',text)
+    })
   }
   function btnStatusClicked(){
-    // fetch('https://as-server-orpin.vercel.app/setStatus')
-    // .then((response) => {
-    //   return response.text()
-    // })
-    // .then((text) => {
-    //   console.log('response: ',text)
-    // })
+    fetch('https://as-server-orpin.vercel.app/setStatus')
+    .then((response) => {
+      return response.text()
+    })
+    .then((text) => {
+      console.log('response: ',text)
+    })
   }
   return (
     <div>
