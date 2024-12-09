@@ -16,18 +16,18 @@ app.get('/',(req,res) => {
     res.send("server is ok")
 })
 app.get('/changeStatus',async (req,res) => {
-    //find ip from database
-    const ipAddress = await collection.findOne({"_id":1})
+    // //find ip from database
+    // const ipAddress = await collection.findOne({"_id":1})
 
-    const id = req.query.id
+    // const id = req.query.id
 
-    const response = await fetch(`http://${ipAddress.ip}/changeStatus?id=${id}`)
-    if(!response.ok){
-        res.send("Response not ok")
-    }
-    const text = await response.text()
+    // const response = await fetch(`http://${ipAddress.ip}/changeStatus?id=${id}`)
+    // if(!response.ok){
+    //     res.send("Response not ok")
+    // }
+    // const text = await response.text()
 
-    res.send(text)
+    res.send('server responded')
 })
 app.get('/getReading',async (req,res) => {
     //find ip from database
