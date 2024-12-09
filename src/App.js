@@ -22,10 +22,20 @@ function App() {
       console.log('response: ',text)
     })
   }
+  function btnCheckClicked(){
+    fetch('https://as-server-orpin.vercel.app/check')
+    .then((response) => {
+      return response.text()
+    })
+    .then((text) => {
+      console.log('response: ',text)
+    })
+  }
   return (
     <div>
       <button id='btnStatus' onClick={btnStatusClicked}>setStatus</button>
       <button id='btnReading' onClick={btnReadingClicked}>getReading</button>
+      <button id='btnCheck' onClick={btnCheckClicked}>checkEverything</button>
       <h1 id='readingText'>{text}</h1>
     </div>
   )

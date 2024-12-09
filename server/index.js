@@ -15,6 +15,20 @@ const collection = mongoClient.db('myDB').collection('cardiology')
 app.get('/',(req,res) => {
     res.send("server is ok")
 })
+app.get('/check',async (req,res) => {
+    //find ip from database
+    const ipAddress = await collection.findOne({"_id":1})
+
+    const id = req.query.id
+
+    const response = await fetch(`http://${ipAddress.ip}/`)
+    if(!response.ok){
+        res.send("Response not ok")
+    }
+    const text = await response.text()
+
+    res.send(text)
+})
 app.get('/setStatus',async (req,res) => {
     //find ip from database
     const ipAddress = await collection.findOne({"_id":1})
