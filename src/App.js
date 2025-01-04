@@ -1,14 +1,34 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 
+const isAliveTimeOut = 1000
+
 function App() {
+  function getStatus(){
+    fetch('http://192.168.10.55/getStatus')
+    .then((response) => {
+      return response.text()
+    })
+    .then((text) => {
+      if(text.indexOf('currentMeter:')!=-1){
+        setState({
+          isAlive:true,
+          status:`Running Meter: ${text[13]}`,
+          btnTglLabel:'Toggle',
+          btnTglDisabled:false
+        })
+        console.log('getStatus ok')
+      }
+    })
+  }
   const isAliveRequest = () => {
+    console.log('inside isAliveRequest')
       fetch('http://192.168.10.55/isAlive')
       .then((response) => {
         return response.text()
       })
       .then((text) => {
-        if(text.indexOf('espAlive')!=0){
+        if(text.indexOf('espAlive')!=-1){
           setState({
             ...state,
             isAlive:false,
@@ -16,8 +36,13 @@ function App() {
             btnTglLabel:'Toggle',
             btnTglDisabled:true
           })
+          console.log('arduino was not resonding')
         }
-        setTimeout(isAliveRequest,1500)
+        else if(text.indexOf('bothAlive')!=-1){
+          console.log('both Alive')
+          getStatus()
+        }
+        setTimeout(isAliveRequest,isAliveTimeOut)
       })
       .catch(() => {
         setState({
@@ -28,7 +53,7 @@ function App() {
           isAlive:false
         })
         console.log('esp not responding')
-        setTimeout(isAliveRequest,1500)
+        setTimeout(isAliveRequest,isAliveTimeOut)
       })
     }
   const [state,setState] = useState({})
@@ -69,22 +94,10 @@ function App() {
   }
   useEffect(() => {
     //make a fetch request 'getStatus'
-    fetch('http://192.168.10.55/getStatus')
-    .then((response) => {
-      return response.text()
-    })
-    .then((text) => {
-      if(text.indexOf('currentMeter:')!=-1){
-        setState({
-          isAlive:true,
-          status:`Running Meter: ${text[13]}`,
-          btnTglLabel:'Toggle',
-          btnTglDisabled:false
-        })
-      }
-      setTimeout(isAliveRequest,1500)
-    })
-  })
+    console.log('inside useeffect')
+    getStatus()
+    setTimeout(isAliveRequest,isAliveTimeOut)
+  },[])
   return (
     <div>
       {(Object.values(state).length > 0)?(
