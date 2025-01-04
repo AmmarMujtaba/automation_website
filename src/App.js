@@ -1,42 +1,92 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  const [text,setText] = useState("")
-  function btnReadingClicked(){
-    fetch('https://as-server-orpin.vercel.app/getReading')
+  const isAliveRequest = () => {
+      fetch('http://192.168.10.55/isAlive')
+      .then((response) => {
+        return response.text()
+      })
+      .then((text) => {
+        if(text.indexOf('espAlive')!=0){
+          setState({
+            ...state,
+            status:`arduino not responding`,
+            btnTglLabel:'Toggle',
+            btnTglDisabled:true,
+            isAlive:false
+          })
+        }
+        setTimeout(isAliveRequest,1500)
+      })
+      .catch(() => {
+        setState({
+          ...state,
+          status:`esp not responding`,
+          btnTglLabel:'Toggle',
+          btnTglDisabled:true,
+          isAlive:false
+        })
+      })
+    }
+  const [state,setState] = useState({})
+  function btnToggleClicked(){
+    setState({
+      ...state,
+      btnTglLabel:'toggling...',
+      btnTglDisabled:true,
+    })
+
+    fetch('http://192.168.10.55/toggle')
     .then((response) => {
       return response.text()
     })
     .then((text) => {
-      setText(text)
-      console.log('response: ',text)
+      setState(text)
+      if(text.indexOf('status:')!=0){
+        setState({
+          ...state,
+          status:`Running Meter: ${state[7]}`,
+          toggleBtn:'*Toggled'
+        })
+      }
+      setTimeout(()=>{
+        setState({
+          ...state,
+          btnTglLabel:'Toggle',
+          btnTglDisabled:false,
+        })
+      },1000)
     })
   }
-  function btnStatusClicked(){
-    fetch('https://as-server-orpin.vercel.app/setStatus')
+  useEffect(() => {
+    //make a fetch request 'getStatus'
+    fetch('http://192.168.10.55/getStatus')
     .then((response) => {
       return response.text()
     })
     .then((text) => {
-      console.log('response: ',text)
+      if(text.indexOf('currentMeter:')!=0){
+        setState({
+          isAlive:true,
+          status:`Running Meter: ${text[13]}`,
+          btnTglLabel:'Toggle',
+          btnTglDisabled:false
+        })
+      }
     })
-  }
-  function btnCheckClicked(){
-    fetch('https://as-server-orpin.vercel.app/check')
-    .then((response) => {
-      return response.text()
-    })
-    .then((text) => {
-      console.log('response: ',text)
-    })
-  }
+    isAliveRequest()
+  })
   return (
     <div>
-      <button id='btnStatus' onClick={btnStatusClicked}>setStatus</button>
-      <button id='btnReading' onClick={btnReadingClicked}>getReading</button>
-      <button id='btnCheck' onClick={btnCheckClicked}>checkEverything</button>
-      <h1 id='readingText'>{text}</h1>
+      {(Object.values(state).length > 0)?(
+        <div>
+          <button id='btnStatus' disabled={state.btnTglDisabled} onClick={btnToggleClicked}>{state.btnTglLabel}</button>
+          <h1 id='status'>{state.status}</h1>
+        </div>
+      ):(
+        <h1>Loading...</h1>
+      )}
     </div>
   )
 }
