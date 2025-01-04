@@ -11,10 +11,10 @@ function App() {
         if(text.indexOf('espAlive')!=0){
           setState({
             ...state,
+            isAlive:false,
             status:`arduino not responding`,
             btnTglLabel:'Toggle',
-            btnTglDisabled:true,
-            isAlive:false
+            btnTglDisabled:true
           })
         }
         setTimeout(isAliveRequest,1500)
@@ -27,10 +27,12 @@ function App() {
           btnTglDisabled:true,
           isAlive:false
         })
+        console.log('esp not responding')
+        setTimeout(isAliveRequest,1500)
       })
     }
   const [state,setState] = useState({})
-  function btnToggleClicked(){
+  function btnTglClicked(){
     setState({
       ...state,
       btnTglLabel:'toggling...',
@@ -46,8 +48,14 @@ function App() {
       if(text.indexOf('status:')!=0){
         setState({
           ...state,
-          status:`Running Meter: ${state[7]}`,
+          status:`Running Meter: ${text[7]}`,
           toggleBtn:'*Toggled'
+        })
+      }
+      else{
+        setState({
+          ...state,
+          toggleBtn:'invalid response'
         })
       }
       setTimeout(()=>{
@@ -66,7 +74,7 @@ function App() {
       return response.text()
     })
     .then((text) => {
-      if(text.indexOf('currentMeter:')!=0){
+      if(text.indexOf('currentMeter:')!=-1){
         setState({
           isAlive:true,
           status:`Running Meter: ${text[13]}`,
@@ -74,15 +82,15 @@ function App() {
           btnTglDisabled:false
         })
       }
+      setTimeout(isAliveRequest,1500)
     })
-    isAliveRequest()
   })
   return (
     <div>
       {(Object.values(state).length > 0)?(
         <div>
-          <button id='btnStatus' disabled={state.btnTglDisabled} onClick={btnToggleClicked}>{state.btnTglLabel}</button>
           <h1 id='status'>{state.status}</h1>
+          <button id='btnStatus' disabled={state.btnTglDisabled} onClick={btnTglClicked}>{state.btnTglLabel}</button>
         </div>
       ):(
         <h1>Loading...</h1>
