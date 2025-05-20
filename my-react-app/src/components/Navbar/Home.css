@@ -1,0 +1,595 @@
+.home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: row; /* Column se row tak ke liye change kiya */
+  justify-content: flex-start; /* Sidebar left par raha */
+  align-items: center;
+  text-align: center;
+  background: url("/assets/bg.jpg") no-repeat center center/cover;
+  color: white;
+  padding: 20px;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Slight transparency */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-top-right-radius: 60px;
+  border-bottom-left-radius: 60px;
+  padding-top: 70px;
+  position: fixed;
+  left: 0;
+  top: 0;
+ 
+}
+
+.sidebar .btn {
+  width: 200px;
+  padding: 15px;
+  margin: 10px 0;
+  background: transparent;
+  color: white;
+  font-size: 16px;
+  border-radius: 100px;
+}
+
+.sidebar .btn:hover {
+  background: rgb(83, 83, 241);
+}
+
+/* Adjust content section to give space for sidebar */
+.home-content {
+  max-width: 700px;
+  margin-left: 280px; /* Sidebar ka width (250px) + kuch margin */
+}
+
+#home {
+  scroll-margin-top: 80px; 
+}
+
+.home-description {
+  font-size: 18px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.highlight {
+  color: #4CAF50; /* Green accent */
+}
+
+.btn {
+  padding: 12px 24px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background: #4CAF50;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #45a049;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background: #ddd;
+}
+
+/* Devices Section */
+.devices-section {
+  margin-top: 35px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.devices-container {
+  display: flex;
+  justify-content: space-between; /* Space between device list and added devices */
+  align-items: flex-start; /* Align items at the top */
+  gap: 20px; /* Space between the two sections */
+  width: 100%; /* Full width */
+  max-width: 1000px; /* Optional: Limit the width */
+  margin: auto;
+  margin-left: 300px; /* Adjust this value to shift cards to the right */
+}
+
+.device-list {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping to next line */
+  justify-content: center;
+  gap: 10px;
+  width: 60%; /* Take 60% of the container width */
+}
+
+.device-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 14.5px;
+  border-radius: 20px;
+  text-align: center;
+  width: 180px;
+  height: 240px;
+  transition: transform 0.5s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.device-card:hover {
+  transform: translateY(-10px);
+}
+
+.device-card .device {
+  width: 60px;
+  height: 40px;
+  margin-bottom: 2px;
+  
+}
+.device-card button {
+  margin-top: 5px;  /* Buttons ke beech space dene ke liye */
+  margin-bottom: -2px;  /* Optionally add space between buttons */
+}
+
+.device-card h3 {
+  margin: 13px 0;
+  color: #4CAF50;
+  font-size: 16px;
+}
+
+/* Added Devices Section */
+.added-devices {
+  width: 40%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  color: white;
+
+  /* New lines added below */
+  max-height: 490px; /* Adjust this based on your layout */
+  overflow-y: auto;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #4CAF50 transparent; /* For Firefox */
+}
+
+/* For Chrome, Edge, Safari */
+.added-devices::-webkit-scrollbar {
+  width: 8px;
+}
+
+.added-devices::-webkit-scrollbar-thumb {
+  background-color: #4CAF50;
+  border-radius: 6px;
+}
+
+
+.added-devices h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #4CAF50;
+}
+
+.added-devices ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.added-devices ul li {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: #ecf8f7;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/*Limits Section */
+
+.set-limits-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12); /* Enhanced Glass Effect */
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 830px; /* Slightly Wider */
+  max-height: 560px;
+  margin: auto;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  left: 100px;
+  transition: transform 0.5s ease;
+}
+.set-limits-section:hover {
+  transform: translateY(-10px);
+}
+
+.set-limits-section h2 {
+  font-size: 25px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
+
+.set-limits-section p {
+  font-size: 15.5px;
+  color: #ddd;
+  text-align: center;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* Input Fields */
+.set-limits-section input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  font-size: 14px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+  outline: none;
+  backdrop-filter: blur(5px);
+  margin-bottom: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.set-limits-section input:focus {
+  border-color: #4fc3f7;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+input::placeholder {
+  color: #e0e0e0;
+}
+
+/* Buttons */
+.set-limits-section .button-group {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  margin-top: 15px;
+}
+
+.set-limits-section button {
+  background: linear-gradient(45deg, #4fc3f7, #0288d1);
+  color: white;
+  font-size: 14px;
+  padding: 7px 40px;
+  border: none;
+  border-radius: 150px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.set-limits-section button:hover {
+  background: linear-gradient(45deg, #0288d1, #4fc3f7);
+  transform: scale(1.05);
+}
+
+/* Reset Button with Different Color */
+.set-limits-section .reset-btn {
+  background: linear-gradient(45deg, #ff6b6b, #d32f2f);
+}
+
+.set-limits-section .reset-btn:hover {
+  background: linear-gradient(45deg, #d32f2f, #ff6b6b);
+}
+
+/* Icon */
+.limit-icon {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 20px;
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.3));
+}
+ 
+
+/* Add this in your CSS file or in a <style jsx> block */
+.glass-toast {
+  position: fixed;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  font-size: 1.1rem;
+  z-index: 1000;
+  animation: slideDown 0.3s ease forwards;
+}
+.glass-toast1{
+   position: fixed;
+  top: 20px;
+  left: 55%;
+  transform: translateX(-50%);
+  padding: 20px 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  font-size: 1.1rem;
+  z-index: 1000;
+  animation: slideDown 0.3s ease forwards;
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+
+/*Statistics Styles */
+
+.statistics-section {
+  position: absolute;
+  left: 310px; /* Sidebar width ke hisaab se adjust karo */
+  right: 2px; /* Puri right side tak spread hoga */
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 910px; /* Slightly Wider */
+  max-height: 580px;
+}
+
+.graph-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns layout */
+  gap: 10px;
+  width: 95%;
+  
+}
+
+.stats-icon {
+  font-size: 40px;
+  color: #4fc3f7;
+  margin-bottom: 10px;
+}
+
+/*Live reading*/
+.sensor-reading-section {
+  position: absolute;
+  right: 10%;
+  top: 51%;
+  transform: translateY(-50%);
+  width: 60%; 
+  height: auto; /* Height automatically adjust ho */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sensor-reading-section h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.sensor-reading-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sensor-reading-section li {
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  font-size: 16px;
+}
+.room-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Full width sidebar ke andar */
+  max-width: 180px; /* Fixed width */
+  height: 40px; /* Fixed height taake size na badhe */
+  margin: 5px auto; /* Centering with spacing */
+  padding: 7px 28px;
+  background: rgba(3, 1, 102, 0.8); /* Thoda transparent effect */
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.room-btn:hover {
+  background: rgb(164, 167, 166);
+}
+
+.room-container {
+  max-height: 200px; /* Adjust based on sidebar height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 8px;
+  text-align: center;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #37129b #1a1a2e; /* Custom scrollbar color */
+}
+
+/* Custom scrollbar for Webkit browsers (Chrome, Edge, Safari) */
+.room-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.room-container::-webkit-scrollbar-track {
+  background: #1a1a2e;
+  border-radius: 10px;
+}
+
+.room-container::-webkit-scrollbar-thumb {
+  background: #1e0089;
+  border-radius: 10px;
+}
+
+.room-container::-webkit-scrollbar-thumb:hover {
+  background: #00796b;
+}
+
+
+
+
+/* General layout */
+.container {
+  
+  margin: 0 auto;
+  padding: 2.5rem;
+}
+
+.min-h-screen {
+  min-height: 250vh;
+
+}
+
+/* Title */
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+
+
+/* Home card styling */
+.home-card {
+  background-color: rgba(255, 255, 255, 0.3); /* Glass effect */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border-radius: 12px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-card h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.home-card:hover {
+  transform: translateY(-5px); /* Slight hover effect */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+/* Space between appliances */
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+/* Appliance card with glass effect */
+.appliance-card {
+
+  backdrop-filter: blur(5px); /* Frosted glass effect */
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.appliance-card:hover {
+  transform: translateY(-3px); /* Slight hover effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Shadow effect on hover */
+}
+
+.appliance-card h3 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.appliance-card p {
+  font-size: 1rem;
+  color: #4a4a4a;
+  margin-bottom: 0.25rem;
+}
+
+.appliance-card strong {
+  font-weight: bold;
+}
+
+/* No data available */
+.no-data {
+  font-size: 1rem;
+  color: #e53e3e; /* Red */
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Grid layout for 3x3 or 4x4 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust for responsive 3x3 or 4x4 */
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr); /* For 3 cards per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* For 2 cards per row on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr; /* For 1 card per row on mobile screens */
+  }
+}
